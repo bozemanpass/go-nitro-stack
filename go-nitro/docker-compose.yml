@@ -1,0 +1,50 @@
+version: '3.7'
+
+services:
+  go-nitro-alice:
+    image: bpi/go-nitro:stack
+    hostname: go-nitro-alice
+    restart: on-failure
+    env_file:
+      - ../config/go-nitro/alice.env
+    volumes:
+      - go_nitro_data_alice:/app/data
+    ports:
+      - "3006"
+      - "4006"
+      - "5006"
+      - "4106"
+      - "4206"
+      - "4216"
+
+  go-nitro-bob:
+    image: bpi/go-nitro:stack
+    hostname: go-nitro-bob
+    restart: on-failure
+    env_file:
+      - ../config/go-nitro/bob.env
+    volumes:
+      - go_nitro_data_bob:/app/data
+    ports:
+      - "3007"
+      - "4007"
+      - "5007"
+      - "4107"
+      - "4207"
+      - "4217"
+
+  go-nitro-bootnode:
+    image: bpi/go-nitro:stack
+    hostname: go-nitro-bootnode
+    restart: on-failure
+    env_file:
+      - ../config/go-nitro/bootnode.env
+    volumes:
+      - go_nitro_data_bootnode:/app/data
+    ports:
+      - "9090"
+
+volumes:
+  go_nitro_data_alice:
+  go_nitro_data_bob:
+  go_nitro_data_bootnode:

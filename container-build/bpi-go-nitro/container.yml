@@ -1,0 +1,4 @@
+container:
+  name: bpi/go-nitro
+  ref: bozemanpass/go-nitro
+  build: ./build.sh

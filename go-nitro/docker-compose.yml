@@ -1,5 +1,3 @@
-version: '3.7'
-
 services:
   go-nitro-alice:
     image: bpi/go-nitro:stack
@@ -8,7 +6,7 @@ services:
     env_file:
       - ../config/go-nitro/alice.env
     volumes:
-      - go_nitro_data_alice:/app/data
+      - go-nitro-data-alice:/app/data
     ports:
       - "3006"
       - "4006"
@@ -24,7 +22,7 @@ services:
     env_file:
       - ../config/go-nitro/bob.env
     volumes:
-      - go_nitro_data_bob:/app/data
+      - go-nitro-data-bob:/app/data
     ports:
       - "3007"
       - "4007"
@@ -40,11 +38,11 @@ services:
     env_file:
       - ../config/go-nitro/bootnode.env
     volumes:
-      - go_nitro_data_bootnode:/app/data
+      - go-nitro-data-bootnode:/app/data
     ports:
       - "9090"
 
 volumes:
-  go_nitro_data_alice:
-  go_nitro_data_bob:
-  go_nitro_data_bootnode:
+  go-nitro-data-alice:
+  go-nitro-data-bob:
+  go-nitro-data-bootnode:

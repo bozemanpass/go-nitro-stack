@@ -41,6 +41,11 @@ services:
       - go-nitro-data-bootnode:/app/data
     ports:
       - "9090"
+      - "3008"
+      - "4008"
+      - "4108"
+      - "4208"
+      - "5008"
 
 volumes:
   go-nitro-data-alice:

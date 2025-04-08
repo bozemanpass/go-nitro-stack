@@ -1,8 +1,5 @@
-version: "1.1"
 name: go-nitro
 description: "go-nitro"
-repos:
-  - bozemanpass/go-nitro-stack
 containers:
   - name: bpi/go-nitro
     ref: bozemanpass/go-nitro-stack

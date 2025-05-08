@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-# Run this script once after bringing up gitea in docker compose
-# TODO: add a check to detect that gitea has not fully initialized yet (no user relation error)
 
 if [[ -n "$BPI_SCRIPT_DEBUG" ]]; then
     set -x
@@ -11,7 +9,7 @@ if [[ -f "${BPI_SO_DEPLOYMENT_DIR}/.init_complete" ]]; then
   exit 0
 fi
 
-EXEC_CMD="stack deployment --dir ${BPI_SO_DEPLOYMENT_DIR} exec go-nitro-bootnode"
+EXEC_CMD="stack manage --dir ${BPI_SO_DEPLOYMENT_DIR} exec go-nitro-bootnode"
 
 # Wait till ETH RPC endpoint is available with block number > 1
 retry_interval=5

@@ -14,9 +14,8 @@
 # along with this program.  If not, see <http:#www.gnu.org/licenses/>.
 
 
-def init(deploy_cmd_ctx):
-    return {
-        "config": {
-            "BPI_ALLOW_UNPROTECTED_TXS": "true",
-        }
-    }
+def init(deploy_cmd_ctx, spec):
+    if "config" not in spec:
+        spec["config"] = {}
+    spec["config"]["BPI_ALLOW_UNPROTECTED_TXS"] = "true"
+    return spec

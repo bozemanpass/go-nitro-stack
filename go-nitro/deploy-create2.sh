@@ -4,12 +4,12 @@ if [[ -n "$BPI_SCRIPT_DEBUG" ]]; then
     set -x
 fi
 
-if [[ -f "${BPI_SO_DEPLOYMENT_DIR}/.init_complete" ]]; then
-  echo "Initialization complete (if this is wrong, remove ${BPI_SO_DEPLOYMENT_DIR}/.init_complete and restart the stack)."
+if [[ -f "${STACK_DEPLOYMENT_DIR}/.init_complete" ]]; then
+  echo "Initialization complete (if this is wrong, remove ${STACK_DEPLOYMENT_DIR}/.init_complete and restart the stack)."
   exit 0
 fi
 
-EXEC_CMD="stack manage --dir ${BPI_SO_DEPLOYMENT_DIR} exec go-nitro-bootnode"
+EXEC_CMD="stack manage --dir ${STACK_DEPLOYMENT_DIR} exec go-nitro-bootnode"
 
 # Wait till ETH RPC endpoint is available with block number > 1
 retry_interval=5
@@ -49,4 +49,4 @@ echo "Deploying nitro contracts..."
 $EXEC_CMD "cd /opt/nitro-contracts-runbook && txtx run deploy-nitro-contracts -u -f --input secret_key=0x\${BPI_NITRO_CHAIN_PK} --input chain_id=\${BPI_CHAIN_ID:-1212} --input rpc_url=http://\${STACK_SVC_FXETH_GETH_1}:8545"
 
 echo "Success, go-nitro contracts deployed"
-touch "${BPI_SO_DEPLOYMENT_DIR}/.init_complete"
+touch "${STACK_DEPLOYMENT_DIR}/.init_complete"
